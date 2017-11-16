@@ -9,7 +9,10 @@
                     <div class="panel-body">
                         Your channel ID is {{peer.id}}
                         <input class="form-control" v-model="remote_channel_id" placeholder="Remote Channel ID">
-                        <input    v-on:change="updateFile($event)" type="file"> <button class="btn btn-default" v-on:click="uploadFile($event)">Send File</button>
+
+                        <input    v-on:change="updateFile($event)" type="file">
+                        <br>
+                         <button class="btn btn-default" v-on:click="uploadFile($event)">Send File</button>
                         {{file}}
                     </div>
                 </div>
@@ -30,21 +33,25 @@
             conn : {},
             file: {},
             remote_channel_id: '',
-            file: {},
+            files: [],
             ready: false
           }
         },
         methods: {
           updateFile: function(event){
             this.file = event.target.files[0];
+            this.files = event.target.files;
           },
           uploadFile: function(event){
             this.conn = this.peer.connect(this.remote_channel_id);
             this.conn.on('open', function(){
               conn.send('hi!');
             });
+
+            console.log(event.target.files);
             var file = this.file;
-            var blob = new Blob(event.target.files, {type: file.type});
+            var files = this.files;
+            var blob = new Blob(files, {type: file.type});
 
             this.conn.send({
                 file: blob,
