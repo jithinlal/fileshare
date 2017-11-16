@@ -13,7 +13,7 @@
                         <input    v-on:change="updateFile($event)" type="file">
                         <br>
                          <button class="btn btn-default" v-on:click="uploadFile($event)">Send File</button>
-                        {{file}}
+
                     </div>
                 </div>
             </div>
@@ -34,7 +34,8 @@
             file: {},
             remote_channel_id: '',
             files: [],
-            ready: false
+            ready: false,
+            blob: null
           }
         },
         methods: {
@@ -63,7 +64,7 @@
           },
           downloadFile: function(data){
             var blob = new Blob([data.file], {type: data.filetype});
-            this.file = URL.createObjectURL(blob);
+            this.blob = URL.createObjectURL(blob);
           }
         },
         created(){
