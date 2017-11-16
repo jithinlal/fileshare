@@ -1,5 +1,6 @@
 <template>
-    <div class="container">
+  <transition name="fade">
+    <div class="container" v-if="ready">
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
                 <div class="panel panel-default">
@@ -15,6 +16,7 @@
             </div>
         </div>
     </div>
+  </transition>
 </template>
 
 <script>
@@ -28,7 +30,8 @@
             conn : {},
             file: {},
             remote_channel_id: '',
-            file: ''
+            file: '',
+            ready: false
           }
         },
         methods: {
@@ -55,7 +58,7 @@
         },
         created(){
           this.peer = new Peer({host:'fileshare.jyroneparker.com',port:9000});
-
+          this.ready = true;
           this.peer.on('connection', function(conn) {
           this.conn.on('data', this.downloadFile());
         });
