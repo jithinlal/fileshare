@@ -44,10 +44,12 @@
             this.files = event.target.files;
           },
           uploadFile: function(event){
+            var file = this.file;
+            var files = this.files;
+            console.log(file);
             this.conn = this.peer.connect(this.remote_channel_id);
             this.conn.on('open', function(){
-              var file = this.file;
-              var files = this.files;
+
               var blob = new Blob(files, {type: file.type});
 
               this.conn.send({
