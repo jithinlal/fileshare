@@ -25,7 +25,7 @@
         data() {
           return {
             peer: {},
-            conn : {}
+            conn : {},
             file: {},
             remote_channel_id: '',
             file: ''
