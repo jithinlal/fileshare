@@ -44,7 +44,7 @@
               conn.send('hi!');
             });
             var file = this.file;
-            var blob = new Blob(event.target.files, {type: file.type});
+            var blob = new Blob(file.file, {type: file.type});
 
             this.conn.send({
                 file: blob,
