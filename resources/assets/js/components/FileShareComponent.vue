@@ -69,6 +69,7 @@
           this.peer = new Peer({host:'fileshare.jyroneparker.com',port:9000});
           this.ready = true;
           this.peer.on('connection', function(conn) {
+            console.log(conn);
             conn.on('data', function(data){
               console.log(data);
               var blob = new Blob(data.file, {type: data.filetype});
