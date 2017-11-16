@@ -77,11 +77,15 @@
           this.peer.on('connection', function(conn) {
             console.log(conn);
             that.conn = conn;
-            conn.on('data', function(data){
-              console.log(data);
-              var blob = new Blob(data.file, {type: data.filetype});
-              that.blob = URL.createObjectURL(blob);
-            });
+            conn.on('open', function() {
+              // Receive messages
+              conn.on('data', function(data){
+                console.log(data);
+                var blob = new Blob(data.file, {type: data.filetype});
+                that.blob = URL.createObjectURL(blob);
+              });
+            }
+
         });
         }
     }
