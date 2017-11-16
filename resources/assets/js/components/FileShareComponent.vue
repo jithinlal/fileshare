@@ -54,7 +54,7 @@
           }
         },
         created(){
-          this.peer = new Peer();
+          this.peer = new Peer({host:'fileshare.jyroneparker.com',port:9000});
 
           this.peer.on('connection', function(conn) {
           this.conn.on('data', this.downloadFile());
