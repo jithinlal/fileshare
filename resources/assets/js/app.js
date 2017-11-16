@@ -15,7 +15,7 @@ window.Vue = require('vue');
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-Vue.component('fileshare', require('./components/FireShareComponent.vue'));
+Vue.component('fileshare', require('./components/FileShareComponent.vue'));
 
 const app = new Vue({
     el: '#app'
