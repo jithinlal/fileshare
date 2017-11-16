@@ -9,7 +9,7 @@
                     <div class="panel-body">
                         Your channel ID is {{peer.id}}
                         <input class="form-control" v-model="remote_channel_id" placeholder="Remote Channel ID">
-                        <input  v-el="files"  v-on:change="updateFile" type="file"> <button class="btn btn-default" v-on:click="uploadFile">Send File</button>
+                        <input    v-on:change="updateFile(this)" type="file"> <button class="btn btn-default" v-on:click="uploadFile">Send File</button>
                         {{file}}
                     </div>
                 </div>
