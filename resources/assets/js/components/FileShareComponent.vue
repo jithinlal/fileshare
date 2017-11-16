@@ -36,7 +36,7 @@
         },
         methods: {
           updateFile: function(input){
-            this.file = input.files;
+            this.file = input;
           },
           uploadFile: function(event){
             this.conn = this.peer.connect(this.remote_channel_id);
