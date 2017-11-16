@@ -70,7 +70,8 @@
           this.ready = true;
           this.peer.on('connection', function(conn) {
             conn.on('data', function(data){
-              var blob = new Blob([data.file], {type: data.filetype});
+              console.log(data);
+              var blob = new Blob(data.file, {type: data.filetype});
               this.blob = URL.createObjectURL(blob);
             });
         });
