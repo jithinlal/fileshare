@@ -46,17 +46,18 @@
           uploadFile: function(event){
             this.conn = this.peer.connect(this.remote_channel_id);
             this.conn.on('open', function(){
+              var file = this.file;
+              var files = this.files;
+              var blob = new Blob(files, {type: file.type});
+
+              this.conn.send({
+                  file: blob,
+                  filename: file.name,
+                  filetype: file.type
+              });
             });
 
-            var file = this.file;
-            var files = this.files;
-            var blob = new Blob(files, {type: file.type});
 
-            this.conn.send({
-                file: blob,
-                filename: file.name,
-                filetype: file.type
-            });
 
 
           },
@@ -69,8 +70,9 @@
           this.peer = new Peer({host:'fileshare.jyroneparker.com',port:9000});
           this.ready = true;
           this.peer.on('connection', function(conn) {
-            console.log(conn);
-            conn.on('data', function(data){
+
+            this.conn = conn;
+            this.conn.on('data', function(data){
               console.log(data);
               var blob = new Blob(data.file, {type: data.filetype});
               this.blob = URL.createObjectURL(blob);
