@@ -9,7 +9,7 @@
                     <div class="panel-body">
                         Your channel ID is {{peer.id}}
                         <input class="form-control" v-model="remote_channel_id" placeholder="Remote Channel ID">
-                        <input  v-on:change="updateFile" type="file"> <button class="btn btn-default" v-on:click="uploadFile">Send File</button>
+                        <input  v-el="files"  v-on:change="updateFile" type="file"> <button class="btn btn-default" v-on:click="uploadFile">Send File</button>
                         {{file}}
                     </div>
                 </div>
@@ -36,7 +36,7 @@
         },
         methods: {
           updateFile: function(e){
-            this.vm.$set(this.expression, e.target.files[0]);
+            this.file = this.$$.files.files;
           },
           uploadFile: function(event){
             this.conn = this.peer.connect(this.remote_channel_id);
